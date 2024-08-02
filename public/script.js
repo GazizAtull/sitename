@@ -17,7 +17,7 @@ function render(data) {
 }
 
 // Получение начальных значений с сервера
-fetch('https://mountainous-lapis-barge.glitch.me/api/info')
+fetch('process.env.SERVER/api/info')
     .then(response => response.json())
     .then(data => {
         render(data);
