@@ -27,7 +27,7 @@ fetch('process.env.SERVER/api/info')
     });
 
 add.addEventListener('click', () => {
-    fetch('https://mountainous-lapis-barge.glitch.me/api/update', {
+    fetch(`${process.env.SERVER}/api/info`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
