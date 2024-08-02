@@ -1,0 +1,351 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    background-color: #cac8c8;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.card {
+    padding: 2em;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(5, 5, 5, 0.1);
+    display: flex;
+    flex-direction: column; /* Вертикальное расположение элементов */
+    align-items: center;
+    position: relative;
+    width: 65%;
+    max-width: 350px;
+    background: linear-gradient(57deg, #ffffff, #6e6e6e);
+}
+
+.card img.card-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 25px;
+}
+
+/*#balance, #canDeduced {*/
+/*    font-size: 1.1em;*/
+/*    color: #333;*/
+/*    margin: 0; !* Убираем внешние отступы *!*/
+/*    padding: 10px 0; !* Внутренние отступы сверху и снизу *!*/
+/*    text-align: left; !* Выравниваем текст по левому краю *!*/
+/*}*/
+
+#balance {
+    font-size: 1.0em;
+    margin-top: 50px;
+    margin-right:160px;
+}
+
+#canDeduced {
+    font-size: 0.7em;
+    color: #343434;
+    margin-top: 10px; /* Добавляем верхний отступ для разделения */
+}
+
+.card button {
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-left:240px;
+    font-size: 9px;
+    background-color: #000000;
+    color: #e3e3e3;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+
+}
+
+.card button:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    color: #000000;
+}
+
+.card button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(0 0 0 / 50%);
+}
+
+.modal {
+    display: none; /* Скрывает модальное окно по умолчанию */
+    position: fixed; /* Фиксированное положение */
+    z-index: 1000; /* Находится выше остальных элементов */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Прокрутка если контент больше окна */
+    background-color: rgba(0,0,0,0.5); /* Полупрозрачный фон */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Центрирование окна */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px; /* Максимальная ширина */
+    border-radius: 8px; /* Скругление углов */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-content button{
+    border-radius: 15px; /* Оставил радиус скругления прежним */
+    margin-left: 130px; /* Оставил расположение кнопки прежним */
+    /* Оставил расположение кнопки прежним */
+    font-size: 12px; /* Оставил размер шрифта прежним */
+    /* Сделал текст жирным */
+    background-color: #232323; /* Яркий фон кнопки */
+    color: #ffffff; /* Белый цвет текста */
+    border: none; /* Убрал границу */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Легкая тень для эффекта "выпуклости" */
+    cursor: pointer; /* Указатель курсора для интерактивности */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Плавный переход фона и эффекта при наведении */
+    text-transform: uppercase; /* Привел текст к верхнему регистру */
+    padding:6px
+}
+.modal-content input{
+    width: 90%; /* Ширина на всю доступную область */
+    padding: 10px; /* Отступы внутри элемента */
+    border-radius: 8px; /* Скругление углов */
+    border: 1px solid #ccc; /* Светлая граница */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    font-size: 16px; /* Размер шрифта */
+    margin-bottom: 15px; /* Отступ снизу */
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.modal-content h2{
+    margin-left: 150px;
+}
+.user-container {
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 200px;
+    margin: 10px;
+    text-align: center;
+    min-height: 100px; /* Увеличенная высота */
+    background-color: #e4e3e3;
+    position: relative;
+
+}
+
+.container {
+    border: 1px solid #909090;
+    border-radius: 30px; /* Сделать углы прямыми */
+    padding: 4px; /* Увеличить внутренние отступы */
+    margin: -190px; /* Увеличить внешние отступы */
+    text-align: center;
+    min-height: 100px; /* Увеличить минимальную высоту */
+    background-color: #979797;
+    /* Установить фиксированную ширину */
+    height: 30px; /* Установить фиксированную высоту */
+    box-sizing: border-box; /* Включить padding и border в общую ширину и высоту элемента */
+}
+#klk {
+    border-radius: 15px;
+    font-size: 12px;
+    background-color: #232323;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    padding: 6px;
+
+    /* Добавленные свойства для позиционирования в правом углу */
+    position: absolute;
+    right: 30px;
+    top: 60px;
+}
+.usdt{
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    /* Задайте размер изображения кнопки по вашему усмотрению */
+    height: 25px;
+
+}
+#usdt-amount{
+    margin-top:30px;
+    color: #343333;
+    font-family: 'monospace', sans-serif;
+
+}
+#coming_soon{
+    border: 1px solid #909090;
+    border-radius: 30px;
+    padding: 4px;
+    text-align: center;
+    background-color: #979797;
+    height: 344px;
+    box-sizing: border-box;
+    margin-top: 70px;
+}
+#coming_soon h3{
+    margin-top: 120px;
+}
+.navigationParts{
+    border: 1px solid #585757;
+    border-radius: 30px;
+    padding: 4px;
+    text-align: center;
+    background-color: #383636;
+    height: 100px;
+    box-sizing: border-box;
+    margin-top: 7px;
+
+}
+#menu {
+    position: absolute;
+    margin-top:15px;
+    left: 50px;
+    height: 60px;
+}
+#walletinfo {
+    position: absolute;
+    margin-top:16px;
+    left: 180px;
+    height: 60px;
+    width:60px;
+}
+#friend {
+    position: absolute;
+    margin-top:6px;
+    left: 300px;
+    height: 80px;
+}
+@media (max-width: 380px) {
+    .card {
+        width: 80%; /* Делаем карточку на всю ширину экрана */
+        padding: 0.5em; /* Уменьшаем внутренние отступы */
+    }
+
+    .card h1 {
+        font-size: 0.9em; /* Уменьшаем размер шрифта */
+    }
+
+    .card h4 {
+        font-size: 0.7em; /* Уменьшаем размер шрифта */
+    }
+
+    .card button {
+        font-size: 8px; /* Уменьшаем размер шрифта */
+        padding: 6px 12px; /* Уменьшаем внутренние отступы */
+        margin-top: 10px; /* Уменьшаем отступ сверху */
+        margin-right:30px;
+    }
+    .user-container {
+        border-radius: 30px;
+        padding: 170px;
+        margin: 10px;
+        margin-left:20px;
+
+    }
+    .container {
+        border-radius: 20px;
+        margin: -150px;
+    }
+    #klk {
+        font-size: 9px;
+    }
+    .usdt{
+
+        top: 55px;
+        left: 30px;
+        height: 22px;
+
+    }
+    #usdt-amount{
+        margin-top:30px;
+    }
+    #coming_soon{
+        height: 260px;
+    }
+    #coming_soon h3{
+        margin-top: 110px;
+    }
+    .navigationParts{
+        height: 80px;
+        margin-top: 12px;
+        border-radius:1px;
+
+    }
+    #menu {
+        margin-top:6px;
+        margin-left:12px;
+    }
+    #walletinfo {
+        margin-top:7px;
+
+    }
+    #friend {
+        margin-top:-4px;
+        margin-left:-20px;
+    }
+}
+@media (max-width: 420px){
+    .navigationParts{
+        border-radius:6px;
+    }
+}
+@media (max-width: 396px){
+    #menu {
+        left: 40px;
+        height: 60px;
+    }
+    #walletinfo {
+        left: 160px;
+        height: 60px;
+    }
+    #friend {
+        left: 290px;
+        height: 80px;
+    }
+}
+@media (max-width: 330px){
+    #menu {
+        margin-top:6px;
+        margin-left:-10px;
+    }
+    #walletinfo {
+        margin-left:-30px;
+        margin-top:7px;
+        height: 60px;
+        width:65px
+    }
+    #friend {
+        margin-left:-50px;
+
+    }
+}
